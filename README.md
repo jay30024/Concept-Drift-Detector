@@ -51,7 +51,3 @@ Possible extensions for this project include:
 - **Causal inference models**
 - **LLM-assisted belief interpretation**
 - **Integration with large-scale social media datasets**
-
----
-
-## Repository Structure
