@@ -1,53 +1,91 @@
-Concept Drift Detector
+## Drifter
 
-This notebook demonstrates how semantic embeddings, clustering, temporal modeling, and probabilistic methods can be combined to analyze how beliefs evolve over time.
+Drifter is a full-stack concept drift analysis platform for detecting how language, themes, and narratives shift over time in any evolving text dataset.
 
-The system models beliefs as semantic vectors, groups them into clusters representing ideological positions, and tracks how these clusters shift over time to detect concept drift.
+## Overview
 
----
+- The backend segments time-ordered text into analysis windows, vectorizes them with TF-IDF, clusters recurring themes, and measures drift between adjacent periods.
+- The frontend visualizes drift scores, cluster balance over time, a semantic landscape, and filtered source passages.
+- The current release uses a political corpus as the demo dataset, but the product is not limited to politics.
 
-1. Overview
+## Stack
 
-Human beliefs are dynamic and influenced by social, informational, and technological factors. In many real-world systems—such as social media, news ecosystems, and political discourse—belief structures evolve gradually or shift abruptly.
+- Backend: FastAPI
+- Analysis: NumPy, SciPy, scikit-learn, NLTK
+- Frontend: React + Vite
 
-This notebook explores how machine learning techniques can be used to:
+## Dataset
 
-- Represent beliefs in semantic embedding space
-- Identify clusters of related beliefs
-- Track belief distributions over time
-- Detect concept drift events
-- Analyze potential causal triggers
-- Model belief updates probabilistically
+The current demo dataset is the NLTK State of the Union corpus, a real collection of United States presidential addresses. The app downloads the corpus on first run into a local `.nltk_data` directory.
 
----
+Why this dataset works well here:
 
-2. Potential Applications
+- It is real, historical, and reproducible.
+- It has a clear temporal dimension.
+- It provides a strong example of how concept drift appears in time-ordered text.
 
-This framework can be applied to multiple domains:
+Drifter can be adapted to other domains, including:
 
-Social Media Analysis
-Track how public opinion shifts over time.
+- News archives
+- Support tickets
+- Product reviews
+- Research abstracts
+- Internal knowledge bases
+- Social or community discussions
 
-Political Science
-Detect ideological realignments.
+## Run locally
 
-Misinformation Detection
-Identify emerging narratives or propaganda.
+1. Create or activate the virtual environment.
+2. Install dependencies:
 
-Market Sentiment Analysis
-Monitor shifts in consumer beliefs.
+```bash
+pip install -r requirements.txt
+```
 
-Cultural Evolution Research
-Study long-term changes in societal attitudes.
+3. Start the API:
 
----
+```bash
+uvicorn app.main:app --reload
+```
 
-3. Future Improvements
+4. Start the React client in a second terminal:
 
-Possible extensions for this project include:
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-- Real-time streaming drift detection
-- Graph-based belief networks
-- Causal inference models
-- LLM-assisted belief interpretation
-- Integration with large-scale social media datasets
+5. Open `http://127.0.0.1:5173` during development.
+
+6. For a production-style build served by FastAPI:
+
+```bash
+cd frontend
+npm run build
+```
+
+Then open `http://127.0.0.1:8000`.
+
+## API endpoints
+
+- `GET /api/health`
+- `GET /api/dashboard`
+- `GET /api/segments?year=1995&cluster=2`
+
+## Project layout
+
+```text
+app/
+	analysis.py     # dataset loading and drift analysis
+	main.py         # FastAPI app and endpoints
+frontend/
+	src/            # React application
+	vite.config.js  # dev proxy and build config
+requirements.txt
+```
+
+## Notes
+
+- The React app uses a Vite proxy in development so `/api` requests go to the FastAPI server.
+- FastAPI serves `frontend/dist` automatically after `npm run build`.

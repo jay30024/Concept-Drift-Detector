@@ -1,0 +1,106 @@
+:root {
+  --bg-top: #f1e7d7;
+  --bg-bottom: #c8d6e5;
+  --panel: rgba(255, 250, 242, 0.8);
+  --panel-strong: rgba(255, 250, 242, 0.95);
+  --ink: #1d242d;
+  --muted: #5d6672;
+  --accent: #b24a2b;
+  --accent-soft: rgba(178, 74, 43, 0.12);
+  --line: rgba(29, 36, 45, 0.12);
+  --shadow: 0 18px 40px rgba(48, 49, 54, 0.14);
+  --cluster-0: #b24a2b;
+  --cluster-1: #2f6c91;
+  --cluster-2: #7f8c36;
+  --cluster-3: #7d4e9f;
+  --cluster-4: #c07c1a;
+  --cluster-5: #3f7f68;
+  --cluster-6: #9f394d;
+  --cluster-7: #2e4f72;
+  --soft-panel: rgba(255, 255, 255, 0.46);
+  --soft-border: rgba(255, 255, 255, 0.65);
+  --chart-top: rgba(255, 255, 255, 0.65);
+  --chart-bottom: rgba(255, 255, 255, 0.25);
+  --control-bg: rgba(255, 255, 255, 0.78);
+  --control-bg-hover: rgba(255, 255, 255, 0.92);
+  --control-border: rgba(29, 36, 45, 0.14);
+  color: var(--ink);
+  font: 18px/1.45 'Times New Roman', Times, serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='dark'] {
+  --bg-top: #0e141b;
+  --bg-bottom: #18222d;
+  --panel: rgba(20, 28, 36, 0.82);
+  --panel-strong: rgba(17, 24, 32, 0.94);
+  --ink: #f2efe7;
+  --muted: #b2bdc7;
+  --accent: #d98b63;
+  --accent-soft: rgba(217, 139, 99, 0.18);
+  --line: rgba(242, 239, 231, 0.12);
+  --shadow: 0 18px 40px rgba(2, 6, 11, 0.4);
+  --soft-panel: rgba(255, 255, 255, 0.06);
+  --soft-border: rgba(255, 255, 255, 0.12);
+  --chart-top: rgba(255, 255, 255, 0.07);
+  --chart-bottom: rgba(255, 255, 255, 0.03);
+  --control-bg: rgba(255, 255, 255, 0.08);
+  --control-bg-hover: rgba(255, 255, 255, 0.12);
+  --control-border: rgba(255, 255, 255, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 35%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: transparent;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 80%);
+  pointer-events: none;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
+}
